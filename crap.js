@@ -4,17 +4,19 @@ var http = require('http'),
     port = 8080;
 
 /* Global variables */
-var listingData, server;
+var listingData, server, parsedUrl;
 
+var path = false;
 
 var requestHandler = function(request, response) {
-    var parsedUrl = request.url
-    var method = request.method;
+   parsedUrl = url.parse(request.url);
 
-    if(request.method == "GET" && request.url == '/listings'){
 
-      return 'true';
-    }
+
+
+
+
+
 
   /*
     Your request handler should send listingData in the JSON format if a GET request
@@ -29,7 +31,7 @@ fs.readFile('listings.json', 'utf8', function(err, data) {
 listingData = data;
 server  = http.createServer(function (request, response) {
 
-  if(requestHandler(request, response) == 'true'){
+  if(request.method == "GET" && request.url == '/listings'){
   response.writeHead(200, {'Content-Type': 'text/plain'});
   //response.write(parsedUrl);
   response.end(listingData);

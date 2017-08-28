@@ -7,9 +7,12 @@ var http = require('http'),
 var listingData, server;
 
 
+
 var requestHandler = function(request, response) {
     var parsedUrl = request.url
     var method = request.method;
+
+
 
     if(request.method == "GET" && request.url == '/listings'){
 
